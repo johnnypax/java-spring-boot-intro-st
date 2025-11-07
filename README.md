@@ -14,3 +14,23 @@ Recati sulla cartella, dopo aver eseguito i comandi di sopra, avete a disposizio
 ```bash
 mvn dependency:resolve
 ```
+
+### Procedura per setup NodeJS
+
+```bash
+set PATH "%PATH%;C:\StandAlone\node-v24.11.0-win-x64"
+
+npm config set proxy http://localhost:9000
+npm config set https-proxy http://localhost:9000
+```
+
+### Creazione del progetto Angular:
+
+```bash
+npm install -g @angular/cli
+ng new MyProject1
+cd MyProject1
+ng serve -o
+```
+
+
