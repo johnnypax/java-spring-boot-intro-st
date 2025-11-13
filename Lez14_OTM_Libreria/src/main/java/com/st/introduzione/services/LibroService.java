@@ -40,7 +40,6 @@ public class LibroService implements IServiceLettura<LibroDTO>, IServiceScrittur
 
 	@Override
 	public LibroDTO cercaPerId(Integer id) {
-		// TODO Auto-generated method stub
 		return null;
 	}
 	
@@ -89,7 +88,20 @@ public class LibroService implements IServiceLettura<LibroDTO>, IServiceScrittur
 
 	@Override
 	public boolean elimina(Integer Id) {
-		// TODO Auto-generated method stub
+		libRepo.deleteById(Id);
+		
+		if(libRepo.findById(Id).orElse(null) == null)
+			return true;
+		
+		return false;
+	}
+	
+	public boolean eliminaPerIsbn(String isbn) {
+		Libro l = libRepo.findByIsbn(isbn);
+		if(l != null) {
+			return this.elimina(l.getId());
+		}
+		
 		return false;
 	}
 
@@ -98,5 +110,7 @@ public class LibroService implements IServiceLettura<LibroDTO>, IServiceScrittur
 		// TODO Auto-generated method stub
 		return false;
 	}
+	
+	
 	
 }

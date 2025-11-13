@@ -1,3 +1,30 @@
+function elimina(varIsbn) {
+
+    if (varIsbn) {
+        fetch(`http://localhost:8082/api/libri/${varIsbn}`, { method: "DELETE" })
+            .then(() => {
+                alert("STAPPOOOOOOO");
+                stampa();
+            })
+            .catch(errore => {
+                alert("PROBLEMA");
+                console.log(errore)
+            })
+
+        // const response = 
+        //     await fetch(`http://localhost:8082/api/libri/${varIsbn}`, { method: "DELETE" });
+
+        // if(response.ok){
+        //     alert("STAPPOOOOOOO");
+        //     stampa();
+        // }
+        // else{
+        //     alert("PROBLEMA")
+        // }
+    }
+
+}
+
 async function salva() {
     let isbn = document.getElementById("input-isbn").value;
     let titolo = document.getElementById("input-titolo").value;
@@ -32,55 +59,6 @@ async function salva() {
     }
 }
 
-function stampa() {
-
-    console.log("INIZIO");
-
-    fetch("http://localhost:8082/api/libri")
-        .then(response => response.json())
-        .then(data => {
-            document.getElementById("corpo-tabella").innerHTML = "";
-
-            for (let [index, item] of data.entries()) {
-                let contenuto = `
-                <tr>
-                    <td>${item.isb}</td>
-                    <td>${item.tit}</td>
-                    <td>${item.ann}</td>
-                    <td>${item.pre}</td>
-                </tr>
-            `
-
-                document.getElementById("corpo-tabella").innerHTML += contenuto;
-            }
-        })
-        .catch(errore => {
-            console.log(errore);
-        })
-        .finally(() => {
-            console.log("HO FINITO la FETCH")
-        })
-
-
-    // fetch("http://localhost:8082/api/libri")
-    //     .then(response => {
-    //         const body = response.json();
-    //         return body;
-    //     })
-    //     .then(data => {
-    //         console.log(data)
-    //     })
-    //     .catch(errore => {
-    //         console.log(errore);
-    //     })
-    //     .finally(() => {
-    //         console.log("HO FINITO la FETCH")
-    //     })
-
-
-    console.log("FINE");
-}
-
 // Stampa con Await e Async
 async function stampa() {
 
@@ -97,6 +75,12 @@ async function stampa() {
                     <td>${item.tit}</td>
                     <td>${item.ann}</td>
                     <td>${item.pre}</td>
+                    <td>
+                        <button type="button" 
+                            class="btn btn-danger" onclick="elimina('${item.isb}')">
+                                Elimina
+                        </button>
+                    </td>
                 </tr>
             `
 
