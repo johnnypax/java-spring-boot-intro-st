@@ -33,4 +33,8 @@ cd MyProject1
 ng serve -o
 ```
 
+### Se scarico un progetto angular, devo far girare nella cartella:
 
+```bash
+npm install
+```

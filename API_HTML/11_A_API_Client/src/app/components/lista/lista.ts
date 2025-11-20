@@ -22,30 +22,19 @@ export class Lista {
   }
 
   private renderizzaTabella(): void {
-    this.service.getAll()
-      .then(dati => {
-        this.elenco = dati;
-      })
-      .catch(errore => {
-        console.log(errore);
-      })
+    this.service.getAll().subscribe(
+      {
+        next: (res: Libro[]) => {
+          this.elenco = res;
+        },
+        error: (err) => {
+
+        }
+      }
+    )
   }
 
   elimina(isbn?: string): void {
-    if (isbn) {
-      this.service.delete(isbn)
-        .then(responso => {
-          if (responso) {
-            alert("STAPPOOOOOO")
-            this.renderizzaTabella();
-          }
-
-          else
-            alert("ERRORE")
-        })
-        .catch(errore => {
-          console.log(errore);
-        })
-    }
+    
   }
 }

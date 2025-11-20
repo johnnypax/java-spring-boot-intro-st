@@ -17,4 +17,24 @@ export class LibroService {
     return [];
   }
 
+  async insert(lib: Libro): Promise<boolean>{
+    const response = await fetch("http://localhost:8082/api/libri", {
+      method: "POST",
+      body: JSON.stringify(lib),
+      headers: {
+        "Content-Type": "application/json"
+      }
+    });
+
+    return response.ok;    
+  }
+
+  async delete(isbn: string): Promise<boolean>{
+     const response = await fetch("http://localhost:8082/api/libri/" + isbn, {
+      method: "DELETE",
+     });
+
+     return response.ok;
+  }
+
 }

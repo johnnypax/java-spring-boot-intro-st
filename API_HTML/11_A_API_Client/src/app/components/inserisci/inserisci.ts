@@ -35,19 +35,30 @@ export class Inserisci {
     l.isb = this.isbn;
     l.aut = a;
 
-    this.service.insert(l)
-      .then(responso => {
-        if(responso){
+    this.service.insert(l).subscribe({
+      next: (responso: Libro) => {
           alert("STAPPOOOO");
-          this.router.navigateByUrl("lista")
-        }
+          this.router.navigateByUrl("lista");
+      },
+      error: (err) => {
+        alert("errore");
+        console.log(err);
+      }
+    })
+
+    // this.service.insert(l)
+    //   .then(responso => {
+    //     if(responso){
+    //       alert("STAPPOOOO");
+    //       this.router.navigateByUrl("lista")
+    //     }
           
-        else
-          alert("ERRORE");
-      })
-      .catch(errore => {
-        console.log(errore);
-      })
+    //     else
+    //       alert("ERRORE");
+    //   })
+    //   .catch(errore => {
+    //     console.log(errore);
+    //   })
 
 
   }
