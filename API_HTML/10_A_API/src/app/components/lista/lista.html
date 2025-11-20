@@ -1,0 +1,18 @@
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Titolo</th>
+            <th>Prezzo</th>
+            <th>ISBN</th>
+            <th>Anno</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let l of elenco">
+            <td>{{ l.tit }}</td>
+            <td>{{ l.pre }}</td>
+            <td>{{ l.isb }}</td>
+            <td>{{ l.ann }}</td>
+        </tr>
+    </tbody>
+</table>
